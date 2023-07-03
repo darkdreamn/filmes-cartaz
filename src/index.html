@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>NodeFLIX</title>
+</head>
+
+<body>
+    <section id="navbar">
+        <p id="start">Início</p>
+        <span id="brand">
+            <span>Node</span>
+            <span>FLIX</span>
+        </span>
+        <span id="admin-access">
+            <p id="login">Login</p>
+            <p id="register">Cadastro</p>
+        </span>
+        <span id="admin-side" class="display-off">
+            <p id="options">Opções</p>
+            <p id="exit">Sair</p>
+        </span>
+    </section>
+    <header id="top-infor">
+        <h1 id="top-infor-title">Veja todos os filmes que estão em cartaz nas principais salas de cinema do Brasil</h1>
+    </header>
+    <main id="main">
+        <section id="selected-film" class="display-off">
+        </section>
+        <aside id="category" class="top-aside">
+            <ul id="list-category" class="list-style">
+                <li id="category-action">Ação</li>
+                <li id="category-animation">Animação</li>
+                <li id="category-adventure">Aventura</li>
+                <li id="category-comedy">Comédia</li>
+                <li id="category-documentary">Documentário</li>
+                <li id="category-drama">Drama</li>
+                <li id="category-sport">Esporte</li>
+                <li id="category-fantasy">Fantasia</li>
+                <li id="category-science-fiction">Ficção Científica</li>
+                <li id="category-romance">Romance</li>
+                <li id="category-thriller">Suspense</li>
+                <li id="category-horror">Terror</li>
+            </ul>
+        </aside>
+        <section id="group-cards">
+            <div id="film-card"></div>
+        </section>
+    </main>
+
+    <section id="login-section" class="display-off">
+        <div id="login-box" class="user-box">
+            <div>
+                <span>Usuário</span>
+                <input type="text" id="user-text">
+            </div>
+            <div>
+                <span>Senha</span>
+                <input type="text" id="password-text">
+            </div>
+            <button id="btn-login" class="btn-user" type="submit">Login</button>
+        </div>
+    </section>
+
+    <section id="register-section" class="display-off">
+        <div id="register-box" class="user-box">
+            <div>
+                <span>Usuário</span>
+                <input type="text" id="new-user">
+            </div>
+            <div>
+                <span>Senha</span>
+                <input type="text" id="new-password">
+            </div>
+            <div>
+                <span>Confirmar Senha</span>
+                <input type="text" id="new-password2">
+            </div>
+            <button id="btn-register" class="btn-user" type="submit">Cadastrar</button>
+        </div>
+    </section>
+
+    <section id="options-section" class="display-off">
+        <ul id="list-options" class="list-style">
+            <li id="option-create">Adicionar</li>
+            <li id="option-update">Atualizar</li>
+            <li id="option-delete">Apagar</li>
+        </ul>
+        <table id="table-create" class="display-off">
+            <thead id="thead-head-create-films">
+                <tr>
+                    <td>Título</td>
+                    <td><input id="new-title" type="text" maxLength="80" placeholder="NodeFLIX"></td>
+                </tr>
+                <tr>
+                    <td>Estréia</td>
+                    <td><input id="new-debut" type="text" maxLength="10" placeholder="00/00/0000"></td>
+                </tr>
+                <tr>
+                    <td>Gênero</td>
+                    <td><input id="new-genre" type="text" maxLength="80" placeholder="Aventura"></td>
+                </tr>
+                <tr>
+                    <td>Duração</td>
+                    <td><input id="new-duration" type="number" pattern="/^-?\d+\.?\d*$/"
+                            onKeyPress="if(this.value.length==4) return false;" placeholder=""></td>
+                </tr>
+                <tr>
+                    <td>Origem</td>
+                    <td><input id="new-origin" type="text" maxLength="50" placeholder="Brasil"></td>
+                </tr>
+                <tr>
+                    <td>Direção</td>
+                    <td><input id="new-direction" type="text" maxLength="50" placeholder="NodeFLIX"></td>
+                </tr>
+                <tr>
+                    <td>Roteiro</td>
+                    <td><input id="new-script" type="text" maxLength="50" placeholder="NodeFLIX"></td>
+                </tr>
+                <tr>
+                    <td>Distribuidor</td>
+                    <td><input id="new-distributor" type="text" maxLength="50" placeholder="NodeFLIX"></td>
+                </tr>
+                <tr>
+                    <td>Classificação</td>
+                    <td><input id="new-classification" type="number" pattern="/^-?\d+\.?\d*$/"
+                            onKeyPress="if(this.value.length==2) return false;" placeholder=""></td>
+                </tr>
+                <tr>
+                    <td>Ano</td>
+                    <td><input id="new-year" type="number" pattern="/^-?\d+\.?\d*$/"
+                            onKeyPress="if(this.value.length==4) return false;" placeholder="2023"></td>
+                </tr>
+                <tr>
+                    <td>Imagem</td>
+                    <td><input id="new-img" type="text" maxLength="100"></td>
+                </tr>
+                <tr>
+                    <td>Sinópse</td>
+                    <td><textarea id="new-sinopse" name="sinopse" maxLength="800" id="create-sinopse" cols="300"
+                            rows="10"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button id="btn-send" type="submit">Confirmar</button></td>
+                </tr>
+            </thead>
+        </table>
+        <table id="table-list-films">
+            <thead id="thead-head-films">
+            </thead>
+            <tbody id="table-body-films">
+            </tbody>
+        </table>
+    </section>
+    <footer>
+        <p>Copyright © NodeFLIX - 2023</p>
+    </footer>
+
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>
