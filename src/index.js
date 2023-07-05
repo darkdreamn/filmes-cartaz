@@ -357,16 +357,12 @@ optionUpdate.addEventListener('click', () => {
     optionsArrayFilms.forEach(function (element) {
         element.addEventListener("click", function () {
             for (let i = 0; i < arrayFilms.length; i++) {
-                let auxGenre = ''
-                for (let k = 0; k < arrayFilms[i].genre.length; k++) {
-                    auxGenre += `${arrayFilms[i].genre[k]}`
-                }
                 if (element.childNodes[0].innerText == arrayFilms[i].id) {
                     tableCreate.classList.remove('display-off')
                     tableListFilms.classList.add('display-off')
                     newTitle.value = arrayFilms[i].title
                     newDebut.value = arrayFilms[i].debut
-                    newGenre.value = auxGenre
+                    newGenre.value = arrayFilms[i].genre.replaceAll(';', ', ')
                     newDuration.value = arrayFilms[i].duration
                     newOrigin.value = arrayFilms[i].origin
                     newDirection.value = arrayFilms[i].direction
@@ -466,15 +462,11 @@ function buildTableOptions(key) {
     </tr>`
     tableBodyFilms.innerHTML = ''
     for (let i = 0; i < arrayFilms.length; i++) {
-        let auxGenre = ''
-        for (let k = 0; k < arrayFilms[i].genre.length; k++) {
-            auxGenre += `${arrayFilms[i].genre[k]}`
-        }
         tableBodyFilms.innerHTML +=
             `<td>${arrayFilms[i].id}</td>
         <td>${arrayFilms[i].title}</td>
         <td>${arrayFilms[i].debut}</td>        
-        <td>${auxGenre}</td>        
+        <td>${arrayFilms[i].genre.replaceAll(';', ', ')}</td>        
         <td>${arrayFilms[i].duration + ' min'}</td>
         <td>${arrayFilms[i].origin}</td>
         <td>${arrayFilms[i].direction}</td>
@@ -559,7 +551,7 @@ function chooseFilm() {
                             </li>
                             <li>
                                 <span>Gênero:</span>
-                                <span>${arrayFilms[i].genre}</span >
+                                <span>${arrayFilms[i].genre.replaceAll(';', ', ')}</span >
                             </li >
                             <li>
                                 <span>Duração:</span>
