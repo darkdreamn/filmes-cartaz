@@ -393,7 +393,7 @@ btnSend.addEventListener('click', () => {
                 direction: newDirection.value,
                 script: newScript.value,
                 distributor: newDistributor.value,
-                classification: newClassification.value + ' anos',
+                classification: newClassification.value,
                 year: newYear.value,
                 synopsis: newSynopsis.value,
                 img: newImg.value
@@ -472,7 +472,7 @@ function buildTableOptions(key) {
         <td>${arrayFilms[i].direction}</td>
         <td>${arrayFilms[i].script}</td>
         <td>${arrayFilms[i].distributor}</td>
-        <td>${arrayFilms[i].classification}</td>
+        <td>${arrayFilms[i].classification == 0 ? 'livre' : arrayFilms[i].classification + ' anos'}</td>
         <td>${arrayFilms[i].year}</td>
         <td>${arrayFilms[i].synopsis}</td>
         <td><img src="${arrayFilms[i].img}" alt="capa filme"></td>`
@@ -506,7 +506,7 @@ function fullGroupFilms() {
         filmCards.innerHTML += `<div id="${arrayFilms[i].id}" class="card">
         <img src="${arrayFilms[i].img}" alt="imagem card">
         <h2>${arrayFilms[i].title}</h2>
-        <p>${arrayFilms[i].classification}</p>`
+        <p>${arrayFilms[i].classification == 0 ? 'livre' : arrayFilms[i].classification + ' anos'}</p>`
     }
     elementsArray = document.querySelectorAll(".card")
     chooseFilm()
@@ -515,7 +515,7 @@ function tagFilms(i) {
     filmCards.innerHTML += `<div id="${arrayFilms[i].id}" class="card">
         <img src="${arrayFilms[i].img}" alt="imagem card">
         <h2>${arrayFilms[i].title}</h2>
-        <p>${arrayFilms[i].classification}</p>`
+        <p>${arrayFilms[i].classification == 0 ? 'livre' : arrayFilms[i].classification + ' anos'}</p>`
     elementsArray = document.querySelectorAll(".card")
     chooseFilm()
 }
@@ -575,7 +575,7 @@ function chooseFilm() {
                             </li>
                             <li>
                                 <span>Classificação:</span>
-                                <span>${arrayFilms[i].classification}</span>
+                                <span>${arrayFilms[i].classification == 0 ? 'livre' : arrayFilms[i].classification + ' anos'}</span>
                             </li>
                             <li>
                                 <span>Ano:</span>
