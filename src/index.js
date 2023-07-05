@@ -57,6 +57,8 @@ const tableHeadFilms = document.getElementById('thead-head-films')
 const tableListFilms = document.getElementById('table-list-films')
 const topInfor = document.getElementById('top-infor')
 const user = document.getElementById('user-text')
+// const address = 'http://localhost:3000/filmes'
+const address = 'http://localhost:3000'
 
 let arrayFilms = []
 let arrayUsers = []
@@ -501,20 +503,19 @@ function clearOptions() {
     tableListFilms.classList.add('display-off')
 }
 function fullGroupFilms() {
-    const endereco = 'http://localhost:3000/filmes'
     filmCards.innerHTML = ''
-    fetch(endereco, {
+    fetch(address + '/filmes', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOiJBRE1JTjtVU0VSIiwiaWF0IjoxNjg4NTk2MjU0LCJleHAiOjE2ODg1OTk4NTR9.sAxeoiuTQkAgIDI59Mky0FqSSL8J8D4yyf5tVZ05cOo'
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOiJBRE1JTjtVU0VSIiwiaWF0IjoxNjg4NTk5OTE3LCJleHAiOjE2ODg2MDM1MTd9.w6iUHKWY42lcF3uYH0g-mczyVGNq0ai-t1tfCqdSm0I'
         }
     })
         .then(response => response.json())
         .then(movies => {
             movies.forEach(movie => {
                 filmCards.innerHTML += `<div id="${movie.id}" class="card">
-        <img src="${movie.img}" alt="imagem card">
+        <img src="${movie.img}" referrerpolicy="no-referrer" alt="imagem card">
         <h2>${movie.title}</h2>
         <p>${movie.classification == 0 ? 'livre' : movie.classification + ' anos'}</p>`
             })
