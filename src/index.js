@@ -501,16 +501,43 @@ function clearOptions() {
     tableListFilms.classList.add('display-off')
 }
 function fullGroupFilms() {
+    const endereco = 'http://localhost:3000/filmes'
     filmCards.innerHTML = ''
-    for (let i = 0; i < arrayFilms.length; i++) {
-        filmCards.innerHTML += `<div id="${arrayFilms[i].id}" class="card">
-        <img src="${arrayFilms[i].img}" alt="imagem card">
-        <h2>${arrayFilms[i].title}</h2>
-        <p>${arrayFilms[i].classification == 0 ? 'livre' : arrayFilms[i].classification + ' anos'}</p>`
-    }
-    elementsArray = document.querySelectorAll(".card")
-    chooseFilm()
+    fetch(endereco, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOiJBRE1JTjtVU0VSIiwiaWF0IjoxNjg4NTk2MjU0LCJleHAiOjE2ODg1OTk4NTR9.sAxeoiuTQkAgIDI59Mky0FqSSL8J8D4yyf5tVZ05cOo'
+        }
+    })
+        .then(response => response.json())
+        .then(movies => {
+            movies.forEach(movie => {
+                filmCards.innerHTML += `<div id="${movie.id}" class="card">
+        <img src="${movie.img}" alt="imagem card">
+        <h2>${movie.title}</h2>
+        <p>${movie.classification == 0 ? 'livre' : movie.classification + ' anos'}</p>`
+            })
+            elementsArray = document.querySelectorAll(".card")
+            chooseFilm()
+        })
+        .catch(error => {
+            console.error(error)
+        })
+
+
 }
+// function fullGroupFilms() {
+//     filmCards.innerHTML = ''
+//     for (let i = 0; i < arrayFilms.length; i++) {
+//         filmCards.innerHTML += `<div id="${arrayFilms[i].id}" class="card">
+//         <img src="${arrayFilms[i].img}" alt="imagem card">
+//         <h2>${arrayFilms[i].title}</h2>
+//         <p>${arrayFilms[i].classification == 0 ? 'livre' : arrayFilms[i].classification + ' anos'}</p>`
+//     }
+//     elementsArray = document.querySelectorAll(".card")
+//     chooseFilm()
+// }
 function tagFilms(i) {
     filmCards.innerHTML += `<div id="${arrayFilms[i].id}" class="card">
         <img src="${arrayFilms[i].img}" alt="imagem card">
